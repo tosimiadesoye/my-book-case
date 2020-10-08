@@ -3,6 +3,8 @@ import data from './models/books.json';
 import BookList from './components/BookList';
 import { BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/Header';
+import About from './pages/About';
+
 
 
 const App = (props) => {
@@ -31,6 +33,7 @@ const App = (props) => {
                 <>
                     <Header/>
                     <BookList books={books} addBook={addBook}  stored="library"/>
+            
                 </>
             )} />
                 
@@ -39,8 +42,23 @@ const App = (props) => {
                 <>
                     <Header/>
                     <BookList books={books} addBook={addBook}  stored="library"/>
+                    
                 </>
             )} />
+
+                {/*<Route exact path="/" render={()=> (
+                <>
+                     <BookList books={books} addBook={addBook}  stored="library"/>              
+                </>
+                )} />*/}
+            <Route exact path="/about" render={()=> (
+                <>
+                    <About/>                
+                </>
+            )} />
+
+                
+        
         </BrowserRouter>
 
              
