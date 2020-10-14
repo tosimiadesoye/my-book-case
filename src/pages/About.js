@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom';
 import './about.css'
 
 
+
 const Header = (props) => {
     
     return(
         <>      
-           <Link to="/">Home</Link>
-           <Link to="/about" className='aboutLink'> About</Link> 
-            <header>Welcome to the Bookcase Application</header>        
-            <p className="about">The following application was created by Tosimi Adesoye.
+           
+            <header className="mt-5 mb-5 text-center header">Welcome to the Bookcase Application</header>        
+            <p className="about pl-5 bg-warning">The following application was created by Tosimi Adesoye.
                 This bookcase app displays a list of books that a user can
                 save to a local bookcase
                 Click on the "Add + " button to add a book to your bookcase.

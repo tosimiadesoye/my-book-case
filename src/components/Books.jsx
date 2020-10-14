@@ -22,8 +22,8 @@ const Book = (props) => {
 
  <div>
      <Row>
-     <Col>
-     <h2>{title}</h2>
+     <Col className="ml-5 p-5">
+     <h2 className="mt-5">{title}</h2>
      <h6>by</h6>
      <h4>{authors && authors.length === 1 ? authors[0] : authors.concat(",")}</h4>
      <p className="description">{description}</p>
