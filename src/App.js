@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import data from './models/books.json';
 import BookList from './components/BookList';
+import Pagination from './components/Pagination';
 import { BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/Header';
 import About from './pages/About';
@@ -9,12 +10,12 @@ import Search from './components/Search'
 
 
 const App = (props) => {
-    
     const [books, setBooks] = useState(data);
     const [keyword, setKeyword] = useState('')
-
+    const [currentPage, setCurrentPage] = useState(1)
+    const [numOfPostPerPages ] = useState(2)
+   
     async function findBooks(value){
-       // const value="dog"
         const results = await
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-ty
             pe=books&projection=lite`).then(res => res.json());
@@ -37,7 +38,13 @@ const App = (props) => {
             } )
             setBooks(newBooks)
         }
-       
+   
+    //current page
+    const previousPage = currentPage * numOfPostPerPages
+    const firstPage = previousPage - numOfPostPerPages;
+    const currentPostsPosition = books.slice(firstPage,previousPage)
+   //next page
+    const nextPage = (numOfPostPerPages) => setCurrentPage(numOfPostPerPages)
     return (    
         
         <BrowserRouter>
@@ -45,7 +52,11 @@ const App = (props) => {
                 <>
                     <Header/>
                     <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
-                    <BookList books={books} addBook={addBook}  stored="library"/>         
+                    <BookList books={currentPostsPosition}
+                        addBook={addBook}
+                        stored="library"
+                    />
+                    <Pagination numOfPostPerPages={numOfPostPerPages} totalNoOfBooks={books.length} nextPage={nextPage} />
                 </>
             )} />
                 
@@ -59,6 +70,7 @@ const App = (props) => {
             )} />
 
 
+            
             <Route exact path="/about" render={()=> (
                 <>
                     

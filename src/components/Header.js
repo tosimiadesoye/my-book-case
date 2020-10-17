@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar,Nav} from 'react-bootstrap'
+import {Navbar,Nav, Form,FormControl,Button} from 'react-bootstrap'
 
 
 
@@ -17,9 +17,10 @@ const Header = (props) => {
                 <Nav.Link> <Link to="/">Home</Link></Nav.Link>
                 <Nav.Link><Link to="/bookcase" className='bookLink'> Bookcase </Link></Nav.Link>
                 <Nav.Link><Link to="/about" className='aboutLink'> About</Link></Nav.Link>
-           
-           
+                <Nav.Link><Link to="/search" className='bookLink'> search </Link></Nav.Link>
            </Nav>
+             
+    
            </Navbar.Collapse>
            </Navbar>
         </>
