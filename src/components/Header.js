@@ -6,7 +6,7 @@ import {Navbar,Nav, Form,FormControl,Button} from 'react-bootstrap'
 
 
 const Header = (props) => {
-    
+  let cartLength = props.cart
     return(
         <>     
             <Navbar bg="light" variant="light" expand="lg">
@@ -15,9 +15,9 @@ const Header = (props) => {
                 <Navbar.Collapse id="basic-nav-bar">
                 <Nav className="mr-auto">
                 <Nav.Link> <Link to="/">Home</Link></Nav.Link>
-                <Nav.Link><Link to="/bookcase" className='bookLink'> Bookcase </Link></Nav.Link>
                 <Nav.Link><Link to="/about" className='aboutLink'> About</Link></Nav.Link>
-                <Nav.Link><Link to="/search" className='bookLink'> search </Link></Nav.Link>
+                        <Nav.Link><Link to="/search" className='bookLink'> search </Link></Nav.Link>
+                        <Nav.Link><Link to="/cart" className=''> CART({cartLength}) </Link></Nav.Link>
            </Nav>
              
     

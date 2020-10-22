@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import data from './models/books.json';
 import BookList from './components/BookList';
+import Cart from './components/Cart';
 import Pagination from './components/Pagination';
 import { BrowserRouter, Route} from 'react-router-dom';
 import Header from './components/Header';
@@ -13,8 +14,10 @@ const App = (props) => {
     const [books, setBooks] = useState(data);
     const [keyword, setKeyword] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const [numOfPostPerPages ] = useState(2)
-   
+    const numOfBooksPerPage = 1;
+    const [cart, setCart] = useState([])
+    
+
     async function findBooks(value){
         const results = await
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-ty
@@ -27,49 +30,54 @@ const App = (props) => {
     if(books.length === 0) {
         return 'No books found'
     }
-        function addBook(title) {
-            console.log(`The Book ${title} was clicked`);
-            const newBooks = books.filter(book => {
-               if (title !== book.volumeInfo.title){
-                    return true
-               } else{
-                   return false
-               }
-            } )
-            setBooks(newBooks)
-        }
+
+
+
+  
+
+    function addBookToCart(title) {
+       let findBooks = books.filter(book => (title === book.volumeInfo.title))              
+        setCart(existingBook => (existingBook.concat(findBooks)))    
+    }
+        
+    function removeBook(title) {
+        const newBooks = books.filter(book => {
+            console.log(title !== book.volumeInfo.title)
+            return title !== book.volumeInfo.title
+        })
+        setBooks(newBooks)
+        }             
+          
    
     //current page
-    const previousPage = currentPage * numOfPostPerPages
-    const firstPage = previousPage - numOfPostPerPages;
+
+    const previousPage = currentPage * numOfBooksPerPage
+    const firstPage = previousPage - numOfBooksPerPage;
     const currentPostsPosition = books.slice(firstPage,previousPage)
    //next page
-    const nextPage = (numOfPostPerPages) => setCurrentPage(numOfPostPerPages)
+    const nextPage = (numOfBooksPerPage) => setCurrentPage(numOfBooksPerPage)
+
     return (    
         
         <BrowserRouter>
             <Route exact path="/" render={()=> (
                 <>
-                    <Header/>
+                    <Header cart={cart.length}/>
+
                     <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
                     <BookList books={currentPostsPosition}
-                        addBook={addBook}
+                        // removeBook={removeBook}
+                        addBookToCart={addBookToCart}
                         stored="library"
                     />
-                    <Pagination numOfPostPerPages={numOfPostPerPages} totalNoOfBooks={books.length} nextPage={nextPage} />
+                      
+                    <Pagination
+                        numOfBooksPerPage={numOfBooksPerPage}
+                        totalNoOfBooks={books.length}
+                        nextPage={nextPage} />
+                        
                 </>
             )} />
-                
-           
-                <Route exact path="/bookcase" render={()=> (
-                <>
-                    <Header/>
-                    <BookList books={books} addBook={addBook}  stored="library"/>
-                    
-                </>
-            )} />
-
-
             
             <Route exact path="/about" render={()=> (
                 <>
@@ -78,6 +86,21 @@ const App = (props) => {
                     <About/>
                    
 
+                </>
+            )} />
+         <Route exact path="/cart" render={() => (
+                <>
+                    <Header/>
+                    <Cart cart={cart} removeBook={removeBook}  />
+                    </>
+            )} />
+
+                     <Route exact path="/search" render={() => (
+                <>
+                    <Header/>
+                    <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
+                    <BookList books={currentPostsPosition} stored="library"/>
+                        
                 </>
             )} />
         

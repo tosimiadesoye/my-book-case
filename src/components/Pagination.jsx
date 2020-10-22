@@ -2,11 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col, Row } from "react-bootstrap";
 
-const Pagination = ({ numOfPostPerPages, totalNoOfBooks, nextPage }) => {
+const Pagination = ({ numOfBooksPerPage, totalNoOfBooks, nextPage }) => {
   let numOfPages = [];
 
   let index = 1;
-  while (index <= Math.ceil(totalNoOfBooks / numOfPostPerPages)) {
+  while (index <= Math.ceil(totalNoOfBooks / numOfBooksPerPage)) {
     numOfPages.push(index); 
     index++;
   }
@@ -16,7 +16,7 @@ const Pagination = ({ numOfPostPerPages, totalNoOfBooks, nextPage }) => {
         {numOfPages.map((num) => (
             <div key={num}>
                 <Col>
-                    <button onClick={()=>nextPage(num)}>{num}</button>
+                    <Button variant="dark" onClick={()=>nextPage(num)}>{num}</Button>
                     </Col>
           </div>
         ))}

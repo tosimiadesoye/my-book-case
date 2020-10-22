@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Col, Row } from "react-bootstrap";
 import "./book.css";
-import data from "../models/books.json";
 
 const Book = (props) => {
-  
-
+ 
   const {
     volumeInfo: {
       authors,
@@ -25,7 +23,7 @@ const Book = (props) => {
   };
 
   return (
-    <div>
+    <div> 
       <Row>
         <Col className="ml-5 p-5">
           <h2 className="mt-5">{title}</h2>
@@ -42,12 +40,19 @@ const Book = (props) => {
             alt={title}
           />
           <h2 className="mt-5 ml-5">{price()}</h2>
+          {/* <Button
+            variant="success"
+            className="mt-5 ml-5"
+            onClick={() => props.removeBook(title)}
+          >
+            remove
+          </Button> */}
           <Button
             variant="success"
             className="mt-5 ml-5"
-            onClick={() => props.addBook(title)}
+            onClick={() => props.addBookToCart(title)}
           >
-            remove
+            add to cart
           </Button>
         </Col>
       </Row>

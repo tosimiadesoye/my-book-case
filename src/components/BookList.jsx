@@ -1,6 +1,7 @@
 import React from "react";
 import Book from "./Books";
-import { Row } from "react-bootstrap";
+
+
 
 const BookList = (props) => {
     
@@ -10,7 +11,8 @@ const BookList = (props) => {
         <Book
           key={book.id}
           book={book}
-          addBook={props.addBook}    
+          // removeBook={props.removeBook}
+          addBookToCart={props.addBookToCart}  
         />
       ))}
           
