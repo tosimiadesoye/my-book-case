@@ -11,7 +11,6 @@ const BookList = (props) => {
         <Book
           key={book.id}
           book={book}
-          // removeBook={props.removeBook}
           addBookToCart={props.addBookToCart}  
         />
       ))}

@@ -1,16 +1,16 @@
 import React, { useState} from 'react';
-import data from './models/books.json';
-import BookList from './components/BookList';
-import Cart from './components/Cart';
-import Pagination from './components/Pagination';
+import data from '../models/books.json';
+import BookList from '../components/book/BookList';
+import Cart from '../components/cart/Cart';
+import Pagination from '../components/pagination/Pagination';
 import { BrowserRouter, Route} from 'react-router-dom';
-import Header from './components/Header';
-import About from './pages/About';
-import Search from './components/Search'
+import Header from '../components/header/Header';
+import About from '../pages/About';
+import Search from '../components/search/Search'
 
 
 
-const App = (props) => {
+const App = () => {
     const [books, setBooks] = useState(data);
     const [keyword, setKeyword] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
@@ -26,29 +26,36 @@ const App = (props) => {
                 setBooks(results.items)
             }
     }
-    
-    if(books.length === 0) {
-        return 'No books found'
-    }
 
+    const addBookToCart = (title) => {
+        let bookToAdd = books.find(book => title === book.volumeInfo.title)
 
+        //check if book already exist in cart
+        let item_exists_in_cart = cart.findIndex(item => bookToAdd.id === item.book.id)
 
-  
+        if (item_exists_in_cart >= 0) {
+            //if book exists in cart, increase count
+            cart[item_exists_in_cart].count += 1;
+            setCart(cart);
+        }
+        else {
+            //if book is not in cart, set count to 1 and add book to cart
+            let newBook = {
+                book: bookToAdd, 
+                count: 1
+            }
 
-    function addBookToCart(title) {
-       let findBooks = books.filter(book => (title === book.volumeInfo.title))              
-        setCart(existingBook => (existingBook.concat(findBooks)))    
-    }
-        
-    function removeBook(title) {
-        const newBooks = books.filter(book => {
-            console.log(title !== book.volumeInfo.title)
-            return title !== book.volumeInfo.title
-        })
-        setBooks(newBooks)
-        }             
-          
-   
+            //if cart is empty, initalize cart with this book
+            if (cart.length === 0) {
+                setCart([newBook])
+            }
+            else {
+                //if cart already has books, append this book to cart.
+                setCart([...cart, newBook])
+            }
+        }
+    } 
+                
     //current page
 
     const previousPage = currentPage * numOfBooksPerPage
@@ -66,7 +73,6 @@ const App = (props) => {
 
                     <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
                     <BookList books={currentPostsPosition}
-                        // removeBook={removeBook}
                         addBookToCart={addBookToCart}
                         stored="library"
                     />
@@ -80,27 +86,31 @@ const App = (props) => {
             )} />
             
             <Route exact path="/about" render={()=> (
-                <>
-                    
-                    <Header/>
+                <>     
+                    <Header cart={cart.length}/>
                     <About/>
-                   
-
                 </>
             )} />
-         <Route exact path="/cart" render={() => (
+         <Route exact path="/bookcase" render={() => (
                 <>
-                    <Header/>
-                    <Cart cart={cart} removeBook={removeBook}  />
-                    </>
+                    <Header cart={cart.length}/>
+                    <Cart cart={cart} setCart={setCart} />
+                </>
             )} />
 
                      <Route exact path="/search" render={() => (
                 <>
-                    <Header/>
+                    <Header cart={cart.length}/>
                     <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
-                    <BookList books={currentPostsPosition} stored="library"/>
-                        
+                    <BookList books={currentPostsPosition}
+                        addBookToCart={addBookToCart}
+                        stored="library"
+                    />
+                      
+                    <Pagination
+                        numOfBooksPerPage={numOfBooksPerPage}
+                        totalNoOfBooks={books.length}
+                        nextPage={nextPage} />               
                 </>
             )} />
         
