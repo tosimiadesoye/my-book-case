@@ -3,15 +3,15 @@ import Book from "./Books";
 
 
 
-const BookList = (props) => {
+const BookList = ({books,addBookToCart}) => {
     
   return (
     <>
-      {props.books.map((book) => (
+      {books.map((book) => (
         <Book
           key={book.id}
           book={book}
-          addBookToCart={props.addBookToCart}  
+          addBookToCart={addBookToCart}  
         />
       ))}
           

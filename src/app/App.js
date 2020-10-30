@@ -14,18 +14,20 @@ const App = () => {
     const [books, setBooks] = useState(data);
     const [keyword, setKeyword] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
-    const numOfBooksPerPage = 1;
+    const numOfBooksPerPage = 2;
     const [cart, setCart] = useState([])
-    
+   
 
-    async function findBooks(value){
-        const results = await
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-ty
-            pe=books&projection=lite`).then(res => res.json());
-            if(!results.error) {
-                setBooks(results.items)
-            }
-    }
+
+
+   async function findBooks(value){
+       const results = await
+       fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-ty
+           pe=books&projection=lite`).then(res => res.json());
+           if(!results.error) {
+               setBooks(results.items)
+           }
+   }
 
     const addBookToCart = (title) => {
         let bookToAdd = books.find(book => title === book.volumeInfo.title)
@@ -71,7 +73,8 @@ const App = () => {
                 <>
                     <Header cart={cart.length}/>
 
-                    <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
+                    <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword}
+                    />
                     <BookList books={currentPostsPosition}
                         addBookToCart={addBookToCart}
                         stored="library"
@@ -101,7 +104,8 @@ const App = () => {
                      <Route exact path="/search" render={() => (
                 <>
                     <Header cart={cart.length}/>
-                    <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword} />
+                    <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword}
+                        />
                     <BookList books={currentPostsPosition}
                         addBookToCart={addBookToCart}
                         stored="library"
