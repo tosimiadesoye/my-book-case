@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav } from "react-bootstrap";
-import "./header.css";
+
 import "../book/book.css";
 
 const Header = (props) => {
   let cartLength = props.cart;
   return (
     <>
-      <Navbar bg="light" variant="light" expand="lg" xs={6} md={5}  className="description">
+      <Navbar bg="light" variant="light" expand="lg" className="description">
         <Navbar.Brand href="# " className="ml-5 pl-5 font-weight-bold">
           My Bookcase
         </Navbar.Brand>

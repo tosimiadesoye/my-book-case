@@ -33,7 +33,12 @@ const App = () => {
         let bookToAdd = books.find(book => title === book.volumeInfo.title)
 
         //check if book already exist in cart
-        let item_exists_in_cart = cart.findIndex(item => bookToAdd.id === item.book.id)
+        let item_exists_in_cart = cart.findIndex(item => {
+            console.log(item.book)
+           return  bookToAdd.id === item.book.id
+            
+        })
+        console.log(item_exists_in_cart)
 
         if (item_exists_in_cart >= 0) {
             //if book exists in cart, increase count

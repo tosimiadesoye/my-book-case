@@ -1,27 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Piazzolla:wght@200&display=swap");
+
+.container-about{
+    display: grid;
+    text-align: center;
+    justify-content: start;
+    margin: 0;
+    grid-template-rows: 1fr 1fr 1fr;
+    font-family: 'Piazzolla', serif;
+}
+.header{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 100px 0px;
+    font-weight: 100px;
+    font-size: 50px;
+    }
 .about{
-font-family: 'Piazzolla', serif;
 border-radius: 12px 15px;
 border: 1px solid black;
-height: 300px;
-width: 400px;
-padding-top: 30px;
+padding-top: 30px; 
 padding-bottom: -40px;
-display: flex;
-flex-direction: column;
-margin-left: 200px;
-margin-right: 250px;
-margin-top: -50px;
+justify-content: center;
+text-align: center;
+background-color: rgb(253, 248, 244); 
+margin-top: 100px;
 font-size: 20px;
+margin-top: 50px;
 }
 
-.header{
-font-family: 'Piazzolla', serif;
-display: flex;
-flex-direction: column;
-margin-left: 250px;
-margin-right: 150px;
-margin-bottom: -500px;
-font-weight: 100px;
-font-size: 50px;
+@media (min-width: 500px){
+    .container-about{
+     margin-left: 400px;
+    }
+    .about{
+        font-family: 'Piazzolla', serif;
+        border-radius: 12px 15px;
+        border: 1px solid black;
+        height: 300px;
+        width: 400px;
+        padding-top: 30px;
+        padding-bottom: -40px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 200px;
+        margin-right: 250px;
+        margin-top: -50px;
+        font-size: 20px;
+        background-color: rgb(253, 248, 244); 
+        }
 }
