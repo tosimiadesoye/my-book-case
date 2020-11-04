@@ -1,4 +1,4 @@
-# multiple-choice-quiz
+# my-book-case
 
 https://github.com/tosimiadesoye/my-book-case
 
@@ -18,9 +18,8 @@ The bookcase displays the amount of books if you have more than one book of the 
 Click on remove to remove a book
 ## Technologies
 Project is created with:
-* JavaScript
-* CSS
-* HTML
+* React
+
 	
 ## Setup
 git clone <url>
