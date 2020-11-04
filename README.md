@@ -8,12 +8,12 @@ https://github.com/tosimiadesoye/my-book-case
 * [Setup](#setup)
 
 ## General info
-Home..
+* Home..
 Created this project as an assignment for the Blackcodher Bootcamp.
 This is a Bookcase app, displays books for users. Type any name of book in the searchbar and click on enter to get a result. There is a view Descripyion button below the authors name, click on it to view the book description and you can click on remove Description to go back to default. The add button adds a book to the bookcase app and there is pagination below which you can click to get the next book.
-About..
+* About
 The about page also explains how to use the app.
-Bookcase..
+* Bookcase
 The bookcase displays the amount of books if you have more than one book of the same kind. 
 Click on remove to remove a book
 ## Technologies
@@ -22,7 +22,7 @@ Project is created with:
 
 	
 ## Setup
-git clone <url>
+git clone the project and initialize npm install init
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
