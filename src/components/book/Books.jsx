@@ -44,7 +44,7 @@ const Book = ({ book, addBookToCart }) => {
             <div>{`${description}${shortened ? "..." : ""}`}</div>
           ) : null}
           {shortened && (
-            <Button variant="light" onClick={handleToggle}>
+            <Button variant="dark" onClick={handleToggle}>
               {expandBook ? "remove Description" : "View Description"}
             </Button>
           )}

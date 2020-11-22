@@ -20,7 +20,8 @@ const Search = ({ keyword, findBooks, setKeyword }) => {
                     type="keyword" placeholder="Enter keyword"
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
-                />
+          />
+          
                     </Form.Group>
                <Button variant="primary" type="submit">submit</Button>
            </Form> 

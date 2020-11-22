@@ -7,7 +7,7 @@ import { BrowserRouter, Route} from 'react-router-dom';
 import Header from '../components/header/Header';
 import About from '../pages/About';
 import Search from '../components/search/Search'
-
+import './app.css'
 
 
 const App = () => {
@@ -16,18 +16,16 @@ const App = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const numOfBooksPerPage = 2;
     const [cart, setCart] = useState([])
-   
 
 
-
-   async function findBooks(value){
-       const results = await
-       fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-ty
-           pe=books&projection=lite`).then(res => res.json());
-           if(!results.error) {
-               setBooks(results.items)
-           }
-   }
+async function findBooks(value){
+    const results = await
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-ty
+        pe=books&projection=lite`).then(res => res.json());
+        if(!results.error) {
+            setBooks(results.items)
+        }
+    }
 
     const addBookToCart = (title) => {
         let bookToAdd = books.find(book => title === book.volumeInfo.title)
@@ -74,6 +72,7 @@ const App = () => {
     return (    
         
         <BrowserRouter>
+            <div className='app'>
             <Route exact path="/" render={()=> (
                 <>
                     <Header cart={cart.length}/>
@@ -122,7 +121,7 @@ const App = () => {
                         nextPage={nextPage} />               
                 </>
             )} />
-        
+        </div>
         </BrowserRouter>
 
              
