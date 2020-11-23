@@ -7,7 +7,8 @@ import { BrowserRouter, Route} from 'react-router-dom';
 import Header from '../components/header/Header';
 import About from '../pages/About';
 import Search from '../components/search/Search'
-import './app.css'
+import FirstPage from '../components/FirstPage'
+
 
 
 const App = () => {
@@ -72,10 +73,17 @@ async function findBooks(value){
     return (    
         
         <BrowserRouter>
-            <div className='app'>
+          
+            <Route exact path="/intro" render={() => (
+                <>
+                <Header cart={cart.length}/> 
+
+                    <FirstPage />
+                    </>
+            )} />
             <Route exact path="/" render={()=> (
                 <>
-                    <Header cart={cart.length}/>
+                     <Header cart={cart.length}/> 
 
                     <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword}
                     />
@@ -121,7 +129,7 @@ async function findBooks(value){
                         nextPage={nextPage} />               
                 </>
             )} />
-        </div>
+      
         </BrowserRouter>
 
              

@@ -1,0 +1,58 @@
+.book-container{
+    position:relative;
+     left:80px; 
+     top:70px;
+}
+Center the book
+.panel__image.panel__image--book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 60px;
+}
+
+
+.article__content a:not(.btn):not(.toolbar-item) {
+	color: #006fc6;
+}
+
+.product-panel--book .panel__image--book img {
+    width: 100% !important;
+    
+}
+
+.books__book__img {
+	width: 100%;
+	max-width: 20px;
+	will-change: transform;
+	transform-origin: 0 100%;
+	transform: rotate(-10deg);
+	transition: transform 0.3s ease-out;
+}
+
+.books__book__img:hover {
+    transform: rotate(0);
+}
+
+.author__image-wrapper::before,
+.books__book__image::before {
+    display: block;
+    content: "";
+    height: 30%;
+    width: 45%;
+    position: absolute;
+    background-image: url(https://i.imgur.com/5udcDlp.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    top: 84%;
+    left: 35%;
+    right: 0;
+    transition: all 0.2s ease-out;
+    transform-origin: 30% 50%;
+    pointer-events: none;
+}
+
+.books__book__image:hover {
+    position: relative;
+}
