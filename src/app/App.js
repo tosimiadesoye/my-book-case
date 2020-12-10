@@ -85,7 +85,9 @@ async function findBooks(value){
                 <>
                      <Header cart={cart.length}/> 
 
-                    <Search findBooks={findBooks} keyword={keyword} setKeyword={setKeyword}
+                    <Search findBooks={findBooks}
+                        keyword={keyword}
+                        setKeyword={setKeyword}
                     />
                     <BookList books={currentPostsPosition}
                         addBookToCart={addBookToCart}
