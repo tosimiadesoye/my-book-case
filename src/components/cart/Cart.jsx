@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Row, Col } from "react-bootstrap";
 
 const Cart = ({ cart, setCart }) => {
-  console.log(cart);
+  
   const removeBook = (book) => setCart(cart.filter((item) => item !== book));
 
   return (

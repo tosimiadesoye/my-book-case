@@ -1,8 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Pagination } from "react-bootstrap";
 
-const Pagination = ({ numOfBooksPerPage, totalNoOfBooks, nextPage }) => {
+const Paginate = ({ numOfBooksPerPage, totalNoOfBooks, nextPage }) => {
   let numOfPages = [];
 
   let index = 1;
@@ -16,7 +16,7 @@ const Pagination = ({ numOfBooksPerPage, totalNoOfBooks, nextPage }) => {
         {numOfPages.map((num) => (
             <div key={num}>
                 <Col>
-                    <Button variant="dark" onClick={()=>nextPage(num)}>{num}</Button>
+                    <Pagination variant="dark" onClick={()=>nextPage(num)}>{num}</Pagination>
                     </Col>
           </div>
         ))}
@@ -25,4 +25,4 @@ const Pagination = ({ numOfBooksPerPage, totalNoOfBooks, nextPage }) => {
   );
 };
 
-export default Pagination;
+export default Paginate;
