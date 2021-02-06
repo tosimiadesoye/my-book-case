@@ -17,7 +17,7 @@ This app displays books for users. Type any name of book in the searchbar and cl
 The bookcase displays the amount of books and if you have more than one book of the same kind it keeps a count of the books for you. 
 Click on remove button to remove a book
 
-## Technologies
+## Technology
 Project is created with:
 * React
 
